@@ -1,0 +1,124 @@
+// variables
+
+$bg_color: #6A7E7E;
+$note_color: #F2DDB1;
+
+
+@font-face {
+    font-family: ShareTech;
+    src: url('../fonts/ShareTech-Regular.ttf');
+}
+
+
+html {
+    font-size: 10px;
+}
+
+* {
+    font-family: "ShareTech";
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: $bg_color;
+}
+
+.site_main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding-top: 6rem;
+}
+
+.todo-section {
+    text-align: center;
+
+    .headline {
+        font-size: 4.8rem;
+        font-weight: 700;
+        margin-bottom: 4rem;
+    }
+
+    .todo-input {
+        min-width: 40rem;
+        font-size: 2.4rem;
+        margin-bottom: 4rem;
+        padding: .6rem .8rem .6rem 1.6rem;
+        border-radius: 0.8rem;
+        border: none;
+    }
+
+    .todo {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        max-width: 60rem;
+        margin: 0 auto;
+        background: $note_color;
+        padding: 3.6rem 3.2rem;
+        border-radius: 1rem;
+        box-shadow: 2px 3px 20px #000, 0 0 60px $note_color inset;
+        position: relative;
+
+        &::before {
+            content: "";
+            position: absolute;
+            height: 100%;
+            left: 1.5rem;
+            border: 1px solid #3B3B3B;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+
+        &:not(:has(.todo-item)) {
+            display: none;
+        }
+
+        .todo-item {
+            display: flex;
+            align-items: center;
+            gap: .8rem;
+            margin-bottom: 1.6rem;
+            padding-bottom: .6rem;
+            border-bottom: .1rem solid #3B3B3B;
+
+            &.done .todo-text {
+                opacity: 0.5;
+                text-decoration-line: line-through;
+            }
+            
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            .todo-check {
+                width: 2rem;
+                height: 2rem;
+            }
+
+            .todo-text {
+                font-size: 2.4rem;
+            }
+
+            .remove-todo-item {
+                margin-left: auto;
+                width: 2.4rem;
+                height: 2.4rem;
+                cursor: pointer;
+
+                path {
+                    transition: all .25s;
+                }
+                
+                &:hover {
+                    path {
+                        stroke: #E71F1F;
+                    }
+                }
+            }
+
+        }
+    }
+}
