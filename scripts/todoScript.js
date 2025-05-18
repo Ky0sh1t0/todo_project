@@ -10,12 +10,27 @@ function checkEl () {
     })
 }
 
+
 document.addEventListener('DOMContentLoaded', () => {
+    // Swiper initialize
+    const swiper = new Swiper('.swiper', {
+        observer: true,
+        speed: 400,
+        slidesPerView: 1,
+        spaceBetween: 100,
+        breakpoints: {},
+        centeredSlides: true,
+    });
+
     let todoText = '';
     let todoList = []
 
     const todoListEl = document.querySelector('.todo');
     const todoTextEl = document.querySelector('.todo-input');
+    const hideHintEl = document.querySelector('.hide_hint');
+    const hintEl = document.querySelector('.hint');
+    const addNoteEl = document.querySelector('.btn_create_note');
+    const swiperEl = document.querySelector('.swiper .swiper-wrapper');
 
 
     function createTodoItem(item) {
@@ -32,17 +47,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
     todoTextEl.addEventListener('keydown', (e) => {
         if (e.code === 'Enter') {
-            todoListEl.innerHTML += createTodoItem(todoTextEl.value);
-            const deleteBtns = document.querySelectorAll('.remove-todo-item');
-            todoTextEl.value = '';
-
-            deleteBtns.forEach((btn) => {
-                btn.addEventListener('click', () => {
-                    const elToRemove = btn.parentNode;
-                    elToRemove.remove();
+            const todoListActive = document.querySelector('.todo.swiper-slide-active')
+            const textTmp = todoTextEl.value;
+            if (textTmp !== "" && textTmp !== " ")  {
+                todoListActive.innerHTML += createTodoItem(textTmp);
+                const deleteBtns = document.querySelectorAll('.remove-todo-item');
+                todoTextEl.value = '';
+                
+                deleteBtns.forEach((btn) => {
+                    btn.addEventListener('click', () => {
+                        const elToRemove = btn.parentNode;
+                        elToRemove.remove();
+                    })
                 })
-            })
-
+            }
         }
+    })
+    
+    hideHintEl.addEventListener('click', () => {
+        if (hintEl.classList.contains('hide')) {
+            hintEl.classList.remove('hide');
+            hideHintEl.textContent = "Hide hint"
+        } else {
+            hintEl.classList.add('hide');
+            hideHintEl.textContent = "Show hint";
+        }
+    });
+
+    addNoteEl.addEventListener('click', () => {
+        const newNote = document.createElement('div');
+        newNote.classList.add('todo');
+        newNote.classList.add('swiper-slide');
+        swiperEl.append(newNote);
+        setTimeout(()=> {
+            swiper.update();
+        }, 50)
     })
 })

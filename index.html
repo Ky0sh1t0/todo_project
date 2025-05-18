@@ -4,18 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TODO</title>
+    <link rel="icon" href="./images/todo_logo.png" type="image/x-icon">
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="./styles/swiper_custom.css">
     <link rel="stylesheet" href="./styles/main.css">
+    <script src="./scripts/swiper.js"></script>
     <script src="./scripts/todoScript.js" defer></script>
 </head>
 <body>
     <main class="site_main">
         <section class="todo-section">
             <h1 class="headline">TODO list:</h1>
-            <input type="text" class="todo-input"/>
-
-            <div class="todo">
-                
+            <div class="control-pannel">
+                <input type="text" class="todo-input"/>
+                <a class="btn btn_create_note">Create a new note</a>
             </div>
+            <p class="hint fading">press "ENTER" to add item in list</p>
+
+            <a class="btn hide_hint">Hide hint</a>
+
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    <div class="todo swiper-slide">
+                    </div>
+                </div>
+            </div> 
+            
         </section>
     </main>
 </body>
