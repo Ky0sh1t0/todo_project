@@ -12,16 +12,6 @@ function checkEl () {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Swiper initialize
-    const swiper = new Swiper('.swiper', {
-        observer: true,
-        speed: 400,
-        slidesPerView: 1,
-        spaceBetween: 100,
-        breakpoints: {},
-        centeredSlides: true,
-    });
-
     let todoText = '';
     let todoList = []
 
@@ -31,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const hintEl = document.querySelector('.hint');
     const addNoteEl = document.querySelector('.btn_create_note');
     const swiperEl = document.querySelector('.swiper .swiper-wrapper');
+    const noteTitle = document.querySelector('.todo_title');
 
 
     function createTodoItem(item) {
@@ -47,10 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     todoTextEl.addEventListener('keydown', (e) => {
         if (e.code === 'Enter') {
-            const todoListActive = document.querySelector('.todo.swiper-slide-active')
             const textTmp = todoTextEl.value;
             if (textTmp !== "" && textTmp !== " ")  {
-                todoListActive.innerHTML += createTodoItem(textTmp);
+                todoListEl.innerHTML += createTodoItem(textTmp);
                 const deleteBtns = document.querySelectorAll('.remove-todo-item');
                 todoTextEl.value = '';
                 
@@ -74,13 +64,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    addNoteEl.addEventListener('click', () => {
-        const newNote = document.createElement('div');
-        newNote.classList.add('todo');
-        newNote.classList.add('swiper-slide');
-        swiperEl.append(newNote);
-        setTimeout(()=> {
-            swiper.update();
-        }, 50)
+    noteTitle.addEventListener('', () => {
+        
     })
+
+    // addNoteEl.addEventListener('click', () => {
+    //     const newNote = document.createElement('div');
+    //     newNote.classList.add('todo');
+    //     newNote.classList.add('swiper-slide');
+    //     swiperEl.append(newNote);
+    //     setTimeout(()=> {
+    //         swiper.update();
+    //     }, 50)
+    // })
 })
